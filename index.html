@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DefendLoop FinTech — Payment & Ledger Portal</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- TOP NAVIGATION -->
+  <header class="navbar">
+    <div class="nav-brand">
+      <div class="brand-logo"><i class="fas fa-shield-alt"></i></div>
+      <div class="brand-text">
+        <span class="brand-title">DefendLoop<span>FinTech</span></span>
+        <span class="brand-subtitle">Distributed Payment &amp; Ledger Platform</span>
+      </div>
+    </div>
+    <div class="nav-status">
+      <span class="status-pill"><span class="dot"></span> Cloudflare Edge &bull; Active</span>
+      <div id="auth-pill" class="auth-pill">
+        <i class="fas fa-key"></i> <span id="auth-status-text">OAuth 2.0: Authenticated</span>
+      </div>
+      <button id="btn-logout" class="btn-sm btn-outline"><i class="fas fa-sign-out-alt"></i></button>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="container">
+
+    <!-- STATS OVERVIEW -->
+    <section class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-header">
+          <span>Operating Balance</span>
+          <i class="fas fa-wallet stat-icon"></i>
+        </div>
+        <div class="stat-value" id="val-balance">$25,480.00</div>
+        <div class="stat-meta text-success"><i class="fas fa-arrow-up"></i> +$3,250.00 settled today</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-header">
+          <span>Available Liquidity</span>
+          <i class="fas fa-university stat-icon"></i>
+        </div>
+        <div class="stat-value">$23,900.00</div>
+        <div class="stat-meta text-muted">Reserve requirement: $1,580.00</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-header">
+          <span>Settled Transactions</span>
+          <i class="fas fa-exchange-alt stat-icon"></i>
+        </div>
+        <div class="stat-value" id="val-tx-count">14</div>
+        <div class="stat-meta text-success"><i class="fas fa-check-circle"></i> 100% Idempotency Protected</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-header">
+          <span>Kafka Event Stream</span>
+          <i class="fas fa-code-branch stat-icon"></i>
+        </div>
+        <div class="stat-value" id="val-event-count">32 Events</div>
+        <div class="stat-meta text-info"><i class="fas fa-broadcast-tower"></i> Topic: fintech-payment-events</div>
+      </div>
+    </section>
+
+    <!-- TAB NAVIGATION -->
+    <div class="tab-bar">
+      <button class="tab-btn active" data-tab="tab-transfer"><i class="fas fa-paper-plane"></i> Initiate Transfer</button>
+      <button class="tab-btn" data-tab="tab-ledger"><i class="fas fa-list-alt"></i> Transaction Ledger</button>
+      <button class="tab-btn" data-tab="tab-kafka"><i class="fas fa-network-wired"></i> Kafka Event Stream <span class="badge-live">LIVE</span></button>
+      <button class="tab-btn" data-tab="tab-reconcile"><i class="fas fa-balance-scale"></i> Account Reconciliation</button>
+    </div>
+
+    <!-- TAB 1: TRANSFER FORM -->
+    <section id="tab-transfer" class="tab-content active">
+      <div class="grid-2col">
+        <!-- Transfer Card -->
+        <div class="card">
+          <div class="card-header">
+            <h3><i class="fas fa-credit-card"></i> New Payment Transfer</h3>
+            <span class="badge-pill badge-blue">REST API &bull; POST /api/v1/payments</span>
+          </div>
+          <form id="transfer-form">
+            <div class="form-group">
+              <label for="recipient-account">Recipient Account ID / IBAN</label>
+              <input type="text" id="recipient-account" class="input-field" placeholder="e.g. ACC-NG-204891 or US89BNK0023" required value="ACC-MONIEPOINT-8820">
+            </div>
+            <div class="form-row">
+              <div class="form-group flex-2">
+                <label for="transfer-amount">Amount</label>
+                <input type="number" step="0.01" min="1" id="transfer-amount" class="input-field" placeholder="0.00" required value="450.00">
+              </div>
+              <div class="form-group flex-1">
+                <label for="transfer-currency">Currency</label>
+                <select id="transfer-currency" class="input-field">
+                  <option value="USD">USD ($)</option>
+                  <option value="NGN">NGN (₦)</option>
+                  <option value="EUR">EUR (€)</option>
+                  <option value="GBP">GBP (£)</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="label-with-action">
+                <label for="idempotency-key">Idempotency Key (Header: Idempotency-Key)</label>
+                <button type="button" id="btn-regen-key" class="btn-link"><i class="fas fa-sync-alt"></i> Generate New</button>
+              </div>
+              <input type="text" id="idempotency-key" class="input-field font-mono" readonly>
+              <small class="field-hint">Guarantees transaction is charged exactly once, even during network retries.</small>
+            </div>
+            <div class="form-group">
+              <label for="transfer-notes">Transaction Note / Purpose</label>
+              <input type="text" id="transfer-notes" class="input-field" placeholder="e.g. Vendor settlement invoice #1042" value="Vendor settlement - Batch run">
+            </div>
+            <div class="form-actions">
+              <button type="submit" id="btn-submit-transfer" class="btn-primary">
+                <i class="fas fa-lock"></i> Submit Payment
+              </button>
+              <button type="button" id="btn-simulate-duplicate" class="btn-warning" title="Simulates a retry with the exact same Idempotency-Key">
+                <i class="fas fa-copy"></i> Test Duplicate (Idempotency)
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Live Payload Preview & Response -->
+        <div class="card">
+          <div class="card-header">
+            <h3><i class="fas fa-terminal"></i> Live HTTP Wire / Response</h3>
+            <span id="response-status-badge" class="badge-pill badge-gray">IDLE</span>
+          </div>
+          <div class="code-terminal">
+            <div class="terminal-header">
+              <span>HTTP / 1.1 JSON Inspector</span>
+              <span id="terminal-latency">0ms</span>
+            </div>
+            <pre id="terminal-output">// Submit a payment to inspect the live request headers, payload, 
+// and idempotency reconciliation response...</pre>
+          </div>
+          <div class="callout callout-info" style="margin-top:15px">
+            <i class="fas fa-info-circle"></i>
+            <div>
+              <strong>SDET Automation Testing Endpoint:</strong>
+              This application exposes a standardized contract tested by our companion repository 
+              <code>fintech-test-platform-harness</code> via REST Assured and Playwright.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: LEDGER -->
+    <section id="tab-ledger" class="tab-content">
+      <div class="card">
+        <div class="card-header">
+          <h3><i class="fas fa-table"></i> Settled Transaction Ledger</h3>
+          <div class="card-actions">
+            <button id="btn-clear-ledger" class="btn-sm btn-outline"><i class="fas fa-trash"></i> Reset</button>
+            <button id="btn-export-ledger" class="btn-sm btn-outline"><i class="fas fa-download"></i> Export JSON</button>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="data-table" id="ledger-table">
+            <thead>
+              <tr>
+                <th>Transaction ID</th>
+                <th>Idempotency Key</th>
+                <th>Recipient</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Kafka Event</th>
+                <th>Timestamp</th>
+              </tr>
+            </thead>
+            <tbody id="ledger-tbody">
+              <!-- Dynamically populated from LocalStorage -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: KAFKA EVENT STREAM -->
+    <section id="tab-kafka" class="tab-content">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h3><i class="fas fa-broadcast-tower"></i> Asynchronous Kafka Event Stream</h3>
+            <small class="text-muted">Simulated partition log for topic: <code>fintech-payment-events</code></small>
+          </div>
+          <button id="btn-clear-kafka" class="btn-sm btn-outline"><i class="fas fa-eraser"></i> Clear Stream</button>
+        </div>
+        <div class="kafka-stream-container" id="kafka-stream-container">
+          <!-- Dynamically populated events -->
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: RECONCILIATION -->
+    <section id="tab-reconcile" class="tab-content">
+      <div class="card">
+        <div class="card-header">
+          <h3><i class="fas fa-calculator"></i> End-of-Day Batch Account Reconciliation</h3>
+          <button id="btn-run-reconciliation" class="btn-primary"><i class="fas fa-sync-alt"></i> Execute Reconciliation Run</button>
+        </div>
+        <p class="text-muted">Simulates the automated reconciliation batch engine developed at State Bank of India that slashed manual audit times from 10 days to 2 days.</p>
+        <div class="reconcile-result-box" id="reconcile-output" style="margin-top:15px">
+          Click "Execute Reconciliation Run" to cross-validate transaction ledgers with pooling accounts.
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- OAUTH LOGIN MODAL -->
+  <div id="auth-modal" class="modal-backdrop">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="brand-logo"><i class="fas fa-key"></i></div>
+        <h3>FinTech Platform Login</h3>
+        <p>OAuth 2.0 Client Credentials / Bearer Authentication</p>
+      </div>
+      <form id="auth-form">
+        <div class="form-group">
+          <label for="auth-client-id">Client ID / Username</label>
+          <input type="text" id="auth-client-id" class="input-field" value="vishal.sdet@defendloop.io" required>
+        </div>
+        <div class="form-group">
+          <label for="auth-secret">Client Secret / Password</label>
+          <input type="password" id="auth-secret" class="input-field" value="MoniepointQuality2026!" required>
+        </div>
+        <div class="form-group">
+          <label for="auth-scope">OAuth Scope</label>
+          <input type="text" id="auth-scope" class="input-field font-mono" value="payments.write accounts.read events.stream" readonly>
+        </div>
+        <button type="submit" id="btn-login-submit" class="btn-primary btn-block">
+          <i class="fas fa-shield-alt"></i> Authenticate &amp; Generate Token
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
