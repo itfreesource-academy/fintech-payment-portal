@@ -28,7 +28,7 @@ This application consists of pure, production-ready static assets (`index.html`,
 
 1. Push this repository to your GitHub account:
    ```bash
-   git remote add origin https://github.com/vishalprajapati2k25/fintech-payment-portal.git
+   git remote add origin https://github.com/itfreesource-academy/fintech-payment-portal.git
    git push -u origin main
    ```
 2. In your **Cloudflare Dashboard**:
@@ -44,7 +44,7 @@ This application consists of pure, production-ready static assets (`index.html`,
 ## 🧪 Automated Test Coverage
 
 This application is automated and regression-tested by our companion test platform:  
-👉 **[fintech-test-platform-harness](https://github.com/vishalprajapati2k25/fintech-test-platform-harness)**
+👉 **[fintech-test-platform-harness](https://github.com/itfreesource-academy/fintech-test-platform-harness)**
 * Automated with **Playwright Java** (Page Object Model E2E tests)
 * Automated with **REST Assured** (HTTP wire and schema tests)
 * Continuous integration via **GitHub Actions**
