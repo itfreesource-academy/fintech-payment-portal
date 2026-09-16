@@ -68,4 +68,65 @@ router.get('/stats', (_req: Request, res: Response) => {
   });
 });
 
+/**
+ * @openapi
+ * /api/v1/system/disclaimer:
+ *   get:
+ *     summary: Official statutory citations and zero-liability educational disclaimer
+ *     tags: [System & Health]
+ */
+router.get('/disclaimer', (_req: Request, res: Response) => {
+  return res.json({
+    success: true,
+    purpose: 'EDUCATIONAL, ACADEMIC RESEARCH AND TEST AUTOMATION HARNESS BENCHMARKING ONLY',
+    liability: 'ZERO LIABILITY - PROVIDED "AS IS" WITHOUT WARRANTIES OF ANY KIND',
+    isFinancialInstitution: false,
+    fiatSettlement: false,
+    syntheticDataOnly: true,
+    statutoryCitations: {
+      india_fiu_rule_114b: {
+        jurisdiction: 'India (FIU-IND / Income Tax Department)',
+        statute: 'Income-tax Rules, 1962 (Rule 114B)',
+        gazetteCitation: 'Gazette Notification S.O. 3548(E) dated 30 Dec 2015',
+        threshold: 'Physical cash transactions > INR 50,000 mandate verified PAN',
+        publicUrl: 'https://incometaxindia.gov.in'
+      },
+      india_fiu_rule_3_ctr: {
+        jurisdiction: 'India (FIU-IND / PMLA)',
+        statute: 'PMLA (Maintenance of Records) Rules 2005 - Rule 3(1)(A) CTR & Rule 3(1)(BA) CBWTR',
+        gazetteCitation: 'Gazette of India, Extraordinary, Part II, Section 3, Sub-section (i) dated 1 July 2005',
+        threshold: 'Cash Transaction Report (CTR) >= INR 10 Lakhs; Cross-Border Wire (CBWTR) >= INR 5 Lakhs',
+        publicUrl: 'https://fiuindia.gov.in'
+      },
+      india_dpdp_act: {
+        jurisdiction: 'India (Ministry of Electronics and Information Technology)',
+        statute: 'Digital Personal Data Protection Act, 2023 (Act No. 22 of 2023)',
+        gazetteCitation: 'Gazette of India dated August 11, 2023',
+        mandate: 'Section 12 Right-to-be-Forgotten data shredding and consent erasure',
+        publicUrl: 'https://www.meity.gov.in'
+      },
+      uae_cbuae_goaml: {
+        jurisdiction: 'United Arab Emirates (CBUAE & UAE FIU)',
+        statute: 'Federal Decree-Law No. (20) of 2018 & CBUAE Notice No. 74/2019',
+        threshold: 'Physical cash transactions >= AED 55,000 mandate UNODC goAML XML reporting',
+        publicUrl: 'https://www.centralbank.ae'
+      },
+      australia_austrac: {
+        jurisdiction: 'Australia (AUSTRAC)',
+        statute: 'Anti-Money Laundering and Counter-Terrorism Financing Act 2006 (AML/CTF Act) Sec 43',
+        threshold: 'Threshold Transaction Report (TTR) for physical/wire transactions >= AUD 10,000',
+        publicUrl: 'https://www.austrac.gov.au'
+      },
+      global_un_sanctions: {
+        jurisdiction: 'International (United Nations & FATF)',
+        statute: 'UN Security Council Resolution 1267/1989/2253 Consolidated List & FATF Recommendation 10 & 12',
+        mandate: 'Immediate targeted financial sanctions freezing against designated entities',
+        publicUrl: 'https://www.un.org/securitycouncil/content/un-sc-consolidated-list'
+      }
+    },
+    usRegulatoryExclusion: '100% EXCLUDED: FinCEN, BSA, USA PATRIOT Act and OFAC SDN are strictly omitted to guarantee 0% commercial NDA overlap.'
+  });
+});
+
 export default router;
+

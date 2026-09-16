@@ -8,6 +8,16 @@
 
 An enterprise-grade, multi-service financial monorepo engineered by **ITFreeSource Academy**. Designed as a reference architecture for production financial systems, real-world automated QA testing (Playwright & REST Assured), and regulatory compliance engineering.
 
+> [!CAUTION]
+> ### ⚠️ LEGAL & REGULATORY DISCLAIMER: FOR EDUCATIONAL & ACADEMIC PURPOSES ONLY
+> **This software is provided "AS IS" for pedagogical, educational, and automated QA testing reference only.**
+> - **NOT A FINANCIAL INSTITUTION**: ITFreeSource Academy and contributors are NOT authorized banks, financial institutions, payment gateways, insurers, or regulatory advisors.
+> - **NO REAL TRANSACTIONS / ZERO LIABILITY**: Does NOT process real fiat currency, legal tender, or real insurance policies. The authors assume **ZERO LIABILITY** for any direct, indirect, incidental, or consequential damages resulting from the use or misuse of this codebase.
+> - **100% SYNTHETIC DATA**: All names, Aadhaar numbers, PANs, DLs, and accounts are synthetic mock fixtures with zero real-world individuals.
+> - **PUBLIC DOMAIN STATUTES**: All compliance thresholds (FIU-IND, CBUAE, AUSTRAC) are derived exclusively from published official government gazettes. Zero proprietary trade secrets, internal employer heuristics, or confidential vendor materials are used.
+>
+> 📖 **Read the complete binding terms**: [**LEGAL_DISCLAIMER.md**](./LEGAL_DISCLAIMER.md)
+
 ---
 
 ## 🌟 Architecture & Key Microservices

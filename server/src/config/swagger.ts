@@ -18,6 +18,10 @@ Comprehensive multi-service financial microservices ecosystem featuring:
 - **Sensitive Data & PII Vault** (AES-256-GCM encryption, dynamic masking, tokenization, DPDP Act 2023 Right-to-be-Forgotten erasure)
 - **Apache Kafka Broker** (6 streaming topics, partitions, consumer lag, DLQ replay)
 - **Enterprise Webhooks** (HMAC-SHA256 signature verification, delivery attempt audit logs)
+
+---
+> ⚠️ **LEGAL & REGULATORY DISCLAIMER (EDUCATIONAL USE ONLY)**:
+> This API and accompanying source code are provided "AS IS" solely for educational study, academic research, and automated test benchmarking. ITFreeSource Academy is NOT an authorized bank, financial institution, or insurer. Zero real financial transactions or fiat settlement are conducted. All personas, accounts, and government document numbers are 100% synthetic fixtures. All AML thresholds are cited from official public government gazettes (Rule 114B, PMLA 2005, CBUAE Notice 74/2019). The authors disclaim all warranties and assume ZERO LIABILITY for downstream usage. Complete terms: [LEGAL_DISCLAIMER.md](https://github.com/itfreesource-academy/itfreesource-academy-fintech-platform/blob/main/LEGAL_DISCLAIMER.md).
       `,
       contact: {
         name: 'ITFreeSource Academy',
