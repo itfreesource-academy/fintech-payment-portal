@@ -136,13 +136,13 @@ export const AmlPage: React.FC = () => {
             Anti-Money Laundering & Watchlist Screening
           </h1>
           <p className="text-xs text-slate-400 mt-1">
-            Strict Non-US Focus: India (FIU-IND Rule 114B & Rule 3 CTR), UAE (CBUAE goAML AED 55k), Australia (AUSTRAC), and UN Sanctions.
+            Multi-Jurisdiction Scope: India (FIU-IND Rule 114B & Rule 3 CTR), UAE (CBUAE goAML AED 55k), Australia (AUSTRAC), and UN Sanctions.
           </p>
         </div>
 
         <div className="flex items-center gap-3">
           <div className="px-3 py-1.5 rounded-xl bg-emerald-950/60 border border-emerald-800/80 text-[11px] font-mono text-emerald-300">
-            0% US Regulatory Overlap (No FinCEN)
+            Multi-Jurisdiction Real-Time Engine
           </div>
           <button
             onClick={fetchAlerts}

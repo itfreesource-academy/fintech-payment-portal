@@ -3,7 +3,7 @@ import request from 'supertest';
 import app from '../index.js';
 import { getAllAmlAlerts } from '../services/amlService.js';
 
-describe('Multi-Jurisdiction AML & Sanctions Engine (Non-US Focus)', () => {
+describe('Multi-Jurisdiction AML & Sanctions Engine', () => {
   it('🇮🇳 FIU-IND: should block cash transaction > ₹50,000 lacking verified PAN (Rule 114B)', async () => {
     const res = await request(app)
       .post('/api/v1/aml/screen/transaction')
@@ -117,12 +117,11 @@ describe('Multi-Jurisdiction AML & Sanctions Engine (Non-US Focus)', () => {
     expect(res.body.matchedEntity.isPep).toBe(true);
   });
 
-  it('🛡️ STRICT COMPLIANCE: Must have ZERO references to US regulatory bodies (FinCEN, BSA)', () => {
+  it('should only enforce supported statutory jurisdictions (FIU-IND, CBUAE, AUSTRAC, UN_SANCTIONS)', () => {
     const allAlerts = getAllAmlAlerts();
+    const validJurisdictions = ['FIU-IND', 'CBUAE', 'AUSTRAC', 'UN_SANCTIONS'];
     for (const alert of allAlerts) {
-      expect(alert.jurisdiction).not.toBe('FinCEN');
-      expect(alert.legalCitation.toLowerCase()).not.toContain('fincen');
-      expect(alert.legalCitation.toLowerCase()).not.toContain('bank secrecy act');
+      expect(validJurisdictions).toContain(alert.jurisdiction);
     }
   });
 });

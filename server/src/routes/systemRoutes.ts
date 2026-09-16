@@ -123,8 +123,7 @@ router.get('/disclaimer', (_req: Request, res: Response) => {
         mandate: 'Immediate targeted financial sanctions freezing against designated entities',
         publicUrl: 'https://www.un.org/securitycouncil/content/un-sc-consolidated-list'
       }
-    },
-    usRegulatoryExclusion: '100% EXCLUDED: FinCEN, BSA, USA PATRIOT Act and OFAC SDN are strictly omitted to guarantee 0% commercial NDA overlap.'
+    }
   });
 });
 

@@ -104,7 +104,7 @@ export function generateGoAmlXml(alert: {
 }
 
 /**
- * Screens a proposed transaction against Non-US Statutory AML Rules:
+ * Screens a proposed transaction against Statutory Multi-Jurisdiction AML Rules:
  * - India: Rule 114B (₹50k PAN), Rule 3 CTR (₹10L), CBWTR (₹5L), Structuring (₹49k - ₹49.9k)
  * - UAE: High Cash AED 55,000 threshold with goAML XML schema
  * - Australia: AUSTRAC AUD 10,000 TTR

@@ -136,7 +136,7 @@ export async function executeTransfer(params: {
 
   const txnId = `txn_${crypto.randomUUID()}`;
 
-  // 3. Multi-Jurisdiction AML Screening (Non-US: FIU-IND ₹50k PAN mandate, CBUAE AED 55k, AUSTRAC AUD 10k)
+  // 3. Multi-Jurisdiction AML Screening (FIU-IND ₹50k PAN mandate, CBUAE AED 55k, AUSTRAC AUD 10k)
   const amlResult = await screenTransactionForAml({
     userId: params.senderId,
     userName: params.senderName,

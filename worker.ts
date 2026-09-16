@@ -225,7 +225,7 @@ app.get('/api/v1/digilocker/documents/:consentId', (c) => {
 });
 
 // ==========================================
-// 3. AML & Sanctions Routes (Non-US Focus)
+// 3. AML & Sanctions Routes (Multi-Jurisdiction)
 // ==========================================
 app.get('/api/v1/aml/alerts', (c) => {
   const jurisdiction = c.req.query('jurisdiction') as AmlJurisdiction | undefined;
@@ -598,8 +598,7 @@ app.get('/api/v1/system/disclaimer', (c) => {
         mandate: 'Immediate targeted financial sanctions freezing against designated entities',
         publicUrl: 'https://www.un.org/securitycouncil/content/un-sc-consolidated-list'
       }
-    },
-    usRegulatoryExclusion: '100% EXCLUDED: FinCEN, BSA, USA PATRIOT Act and OFAC SDN are strictly omitted to guarantee 0% commercial NDA overlap.'
+    }
   });
 });
 

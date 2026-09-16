@@ -28,13 +28,6 @@ describe('System Legal Disclaimer & Statutory Citations API', () => {
     expect(citations.global_un_sanctions.statute).toContain('1267');
   });
 
-  it('should confirm 100% exclusion of US regulatory frameworks (FinCEN, BSA, OFAC)', async () => {
-    const res = await request(app).get('/api/v1/system/disclaimer');
-
-    expect(res.body.usRegulatoryExclusion).toContain('100% EXCLUDED');
-    expect(res.body.usRegulatoryExclusion).toContain('FinCEN');
-    expect(res.body.usRegulatoryExclusion).toContain('BSA');
-  });
 
   it('should expose operational health with microservices catalog', async () => {
     const res = await request(app).get('/api/v1/system/health');

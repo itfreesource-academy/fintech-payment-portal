@@ -124,7 +124,7 @@ export const Footer: React.FC = () => {
             © 2026 ITFreeSource Academy. Licensed under MIT. All statutory citations sourced from official government gazettes.
           </div>
           <div className="flex items-center gap-4">
-            <span className="text-emerald-400 font-mono">0% NDA Conflict - Strictly Non-US Regulatory Public Law</span>
+            <span className="text-emerald-400 font-mono">Open-Source Reference Architecture & QA Test Sandbox</span>
           </div>
         </div>
       </div>
@@ -176,15 +176,6 @@ export const Footer: React.FC = () => {
                 </div>
                 <p className="font-mono text-[11px] text-slate-400 uppercase">
                   THE SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND. UNDER NO CIRCUMSTANCES SHALL THE AUTHORS OR ITFREESOURCE ACADEMY BE LIABLE FOR ANY FINANCIAL LOSSES, REGULATORY ACTIONS, SYSTEM FAILURES, DATA EXPOSURE, OR ANY OTHER DIRECT OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE, REUSE, OR MODIFICATION OF THIS EDUCATIONAL MATERIAL.
-                </p>
-              </div>
-
-              <div className="p-3.5 rounded-2xl bg-slate-950 border border-slate-850 space-y-1.5">
-                <div className="font-bold text-white text-xs uppercase text-rose-400 font-mono">
-                  4. Zero US Regulatory Overlap & Complete NDA Protection
-                </div>
-                <p>
-                  To prevent any employer or proprietary NDA conflict, all US regulatory frameworks (including FinCEN, the US Bank Secrecy Act / BSA, OFAC SDN, and US Currency Transaction Reports) are 100% excluded. Zero confidential heuristics or vendor trade secrets are used.
                 </p>
               </div>
             </div>

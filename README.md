@@ -14,7 +14,7 @@ An enterprise-grade, multi-service financial monorepo engineered by **ITFreeSour
 > - **NOT A FINANCIAL INSTITUTION**: ITFreeSource Academy and contributors are NOT authorized banks, financial institutions, payment gateways, insurers, or regulatory advisors.
 > - **NO REAL TRANSACTIONS / ZERO LIABILITY**: Does NOT process real fiat currency, legal tender, or real insurance policies. The authors assume **ZERO LIABILITY** for any direct, indirect, incidental, or consequential damages resulting from the use or misuse of this codebase.
 > - **100% SYNTHETIC DATA**: All names, Aadhaar numbers, PANs, DLs, and accounts are synthetic mock fixtures with zero real-world individuals.
-> - **PUBLIC DOMAIN STATUTES**: All compliance thresholds (FIU-IND, CBUAE, AUSTRAC) are derived exclusively from published official government gazettes. Zero proprietary trade secrets, internal employer heuristics, or confidential vendor materials are used.
+> - **PUBLIC DOMAIN STATUTES**: All compliance thresholds (FIU-IND, CBUAE, AUSTRAC, UN) are derived exclusively from published official government gazettes and statutory regulations.
 >
 > 📖 **Read the complete binding terms**: [**LEGAL_DISCLAIMER.md**](./LEGAL_DISCLAIMER.md)
 
@@ -72,9 +72,9 @@ flowchart TD
 
 ---
 
-## 🏛️ Statutory Compliance Scope (Strictly Non-US)
+## 🏛️ Statutory Compliance & International Jurisdictions
 
-To ensure zero employer/commercial NDA conflicts, all AML heuristics are cited strictly from public government statutory laws:
+All AML rules, thresholds, and reporting formats are derived directly from published public government statutes:
 
 1. **🇮🇳 India — Financial Intelligence Unit (FIU-IND) & RBI (PMLA)**:
    - **Rule 114B Cash Mandate**: Single-day cash transactions $> \text{₹}50,000$ without verified PAN are automatically blocked.

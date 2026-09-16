@@ -42,9 +42,9 @@
 
 ---
 
-## 🏛️ 4. PUBLIC DOMAIN STATUTORY CITATIONS & ZERO NDA CONFLICT
+## 🏛️ 4. PUBLIC DOMAIN STATUTORY CITATIONS
 
-All compliance thresholds, reporting rules, and workflows implemented in this repository are derived **strictly and exclusively from public government gazettes, statutory acts, and published open regulatory circulars**. Zero proprietary heuristics, internal company algorithms, employer trade secrets, or confidential project materials from any commercial financial crime or compliance software vendor (including NICE Actimize, LexisNexis, Fiserv, or others) are used or replicated.
+All compliance thresholds, reporting rules, and workflows implemented in this repository are derived **strictly and exclusively from publicly accessible government gazettes, statutory acts, and published open regulatory circulars**.
 
 ### Official Public Statutory Sources:
 
@@ -85,12 +85,9 @@ All compliance thresholds, reporting rules, and workflows implemented in this re
 
 ---
 
-## 🛡️ 5. STRICT EXCLUSION OF UNITED STATES REGULATORY BODIES
+## 🌐 5. JURISDICTIONAL SCOPE
 
-> [!NOTE]
-> To eliminate any possibility of overlap, trade secret misappropriation, or non-disclosure agreement (NDA) breach with any US-based commercial initiatives:
-> - **ALL US regulatory bodies (including FinCEN, the US Bank Secrecy Act / BSA, the USA PATRIOT Act, OFAC SDN, and US Currency Transaction Reports / Form 112)** are **100% EXCLUDED** from this codebase.
-> - Zero US agency logic, XML schemas, or reporting formats are implemented.
+This repository focuses specifically on statutory compliance frameworks across India (FIU-IND, RBI, Income Tax Department), the UAE (CBUAE goAML), Australia (AUSTRAC), and International Sanctions (UN Security Council). Other regional frameworks are outside the scope of this reference project.
 
 ---
 

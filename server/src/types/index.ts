@@ -117,7 +117,7 @@ export interface DigiLockerIssuedDoc {
 }
 
 // ==========================================
-// 3. AML & SANCTIONS (NON-US: FIU-IND, CBUAE, AUSTRAC)
+// 3. AML & SANCTIONS (FIU-IND, CBUAE, AUSTRAC, UN)
 // ==========================================
 export type AmlJurisdiction = 'FIU-IND' | 'CBUAE' | 'AUSTRAC' | 'GLOBAL_PEP';
 
