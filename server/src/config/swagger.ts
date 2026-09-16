@@ -1,0 +1,46 @@
+import swaggerJsdoc from 'swagger-jsdoc';
+
+const options: swaggerJsdoc.Options = {
+  definition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'ITFreeSource Academy Enterprise FinTech Platform API',
+      version: '1.0.0',
+      description: `
+### ITFreeSource Academy Enterprise FinTech, KYC, AML, Fraud & Insurance Platform
+Comprehensive multi-service financial microservices ecosystem featuring:
+- **8 Dedicated Personas** (Compliance Officer, Risk Analyst, Underwriter, Fraud Investigator, Retail/HNI Customer, PEP, Auditor)
+- **KYC & Zero-Cost DigiLocker Sandbox** (Authentic Aadhaar, PAN, DL schemas with digital signature verification)
+- **Multi-Jurisdiction AML Screening** (India FIU-IND Rule 114B ₹50k PAN mandate, ₹10L CTR, Structuring smurfing, UAE CBUAE AED 55k with goAML XML generation, AUSTRAC AUD 10k TTR, UN/FATF PEP Watchlists)
+- **Real-Time Fraud Engine** (5-vector risk scoring, impossible travel detection, velocity bursts, headless automation detection)
+- **Core Banking Ledger** (Financial idempotency \`Idempotency-Key\`, multi-currency wallets, double-entry accounting)
+- **Insurance Engine** (Actuarial quote engine, policy underwriting, claims filing & fraud scoring)
+- **Sensitive Data & PII Vault** (AES-256-GCM encryption, dynamic masking, tokenization, DPDP Act 2023 Right-to-be-Forgotten erasure)
+- **Apache Kafka Broker** (6 streaming topics, partitions, consumer lag, DLQ replay)
+- **Enterprise Webhooks** (HMAC-SHA256 signature verification, delivery attempt audit logs)
+      `,
+      contact: {
+        name: 'ITFreeSource Academy',
+        url: 'https://github.com/itfreesource-academy'
+      }
+    },
+    servers: [
+      {
+        url: 'http://localhost:5001',
+        description: 'Local FinTech API Development Server'
+      }
+    ],
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT'
+        }
+      }
+    }
+  },
+  apis: ['./src/routes/*.ts', './dist/routes/*.js']
+};
+
+export const swaggerSpec = swaggerJsdoc(options);

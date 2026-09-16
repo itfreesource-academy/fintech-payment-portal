@@ -1,0 +1,35 @@
+{
+  "name": "itfreesource-academy-fintech-platform",
+  "version": "1.0.0",
+  "description": "ITFreeSource Academy Enterprise FinTech, KYC, AML, Fraud Detection, Insurance & PII Vault Platform",
+  "author": "ITFreeSource Academy",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/itfreesource-academy/itfreesource-academy-fintech-platform.git"
+  },
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "prebuild": "npm --prefix server install --prefer-offline --no-audit && npm --prefix client install --prefer-offline --no-audit",
+    "install:all": "npm install",
+    "dev": "concurrently -k -n \"SERVER,CLIENT\" -c \"cyan,magenta\" \"npm run server:dev\" \"npm run client:dev\"",
+    "server:dev": "npm --prefix server run dev",
+    "client:dev": "npm --prefix client run dev",
+    "build": "npm --prefix server run build && npm --prefix client run build && node -e \"const fs=require('fs'); if(fs.existsSync('client/dist')){fs.cpSync('client/dist', 'dist', {recursive: true}); if(fs.existsSync('dist/index.html')){fs.copyFileSync('dist/index.html', 'dist/200.html');}}\"",
+    "build:client": "npm --prefix client run build && node -e \"const fs=require('fs'); if(fs.existsSync('client/dist')){fs.cpSync('client/dist', 'dist', {recursive: true}); if(fs.existsSync('dist/index.html')){fs.copyFileSync('dist/index.html', 'dist/200.html');}}\"",
+    "build:server": "npm --prefix server run build",
+    "test": "npm --prefix server run test",
+    "test:coverage": "npm --prefix server run test:coverage",
+    "start": "node server/dist/index.js"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "typescript": "^5.8.2"
+  },
+  "dependencies": {
+    "hono": "^4.13.8"
+  }
+}
