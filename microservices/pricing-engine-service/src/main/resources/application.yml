@@ -1,0 +1,20 @@
+server:
+  port: 8085
+
+spring:
+  application:
+    name: pricing-engine-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/pricing_db
+    username: postgres
+    password: postgrespassword
+    driver-class-name: org.postgresql.Driver
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/pricing_catalog
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus

@@ -1,0 +1,37 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: core-banking-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/core_banking_db
+    username: postgres
+    password: postgrespassword
+    driver-class-name: org.postgresql.Driver
+    # Optimized HikariCP Connection Pool (Maps to resume)
+    hikari:
+      pool-name: CoreBankingHikariPool
+      maximum-pool-size: 20
+      minimum-idle: 10
+      idle-timeout: 300000
+      max-lifetime: 1800000
+      connection-timeout: 20000
+      leak-detection-threshold: 2000
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  metrics:
+    enable:
+      hikaricp: true

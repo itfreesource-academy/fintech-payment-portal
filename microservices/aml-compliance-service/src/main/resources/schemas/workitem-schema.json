@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "WorkItemPayload",
+  "type": "object",
+  "properties": {
+    "sourceSystem": {
+      "type": "string",
+      "minLength": 2
+    },
+    "alertCategory": {
+      "type": "string",
+      "enum": ["AML_STRUCTURING", "SANCTIONS_HIT", "LARGE_CASH", "PEP_MATCH"]
+    },
+    "amount": {
+      "type": "number",
+      "minimum": 0.01
+    },
+    "currency": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 3
+    },
+    "entityDetails": {
+      "type": "object",
+      "properties": {
+        "entityId": { "type": "string" },
+        "fullName": { "type": "string" },
+        "jurisdiction": { "type": "string" }
+      },
+      "required": ["entityId", "fullName"]
+    }
+  },
+  "required": ["sourceSystem", "alertCategory", "amount", "currency", "entityDetails"]
+}

@@ -1,0 +1,22 @@
+#!/bin/bash
+# ITFreeSource Academy Enterprise Pre-Commit Guardrail
+# Enforces architectural guidelines and prevents confidential IP leaks
+
+echo "=== Running Enterprise Pre-Commit Verification ==="
+
+# Rule 1: Check code files for banned proprietary terms (e.g. LCTR)
+FORBIDDEN_TERMS="LCTR"
+STAGED_CODE_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(java|xml|json|yml|yaml|proto|ts|tsx|js)$' || true)
+
+if [ -n "$STAGED_CODE_FILES" ]; then
+    for term in $FORBIDDEN_TERMS; do
+        if git diff --cached -- $STAGED_CODE_FILES | grep -iE "\b${term}\b" > /dev/null 2>&1; then
+            echo "❌ COMMIT REJECTED: Prohibited proprietary term '${term}' detected in staged code files."
+            echo "   Please remove references to '${term}' and use public statutory standards (FIU-IND, CBUAE) instead."
+            exit 1
+        fi
+    done
+fi
+
+echo "✅ Pre-Commit Verification Passed: Compliance & IP rules satisfied."
+exit 0

@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package com.itfs.fintech.grpc;
+
+option java_multiple_files = true;
+option java_package = "com.itfs.fintech.grpc";
+option java_outer_classname = "OrderServiceProto";
+
+service OrderFulfillmentGrpcService {
+    rpc ProcessFulfillment (FulfillmentRequest) returns (FulfillmentResponse);
+    rpc CheckOrderStatus (OrderStatusRequest) returns (OrderStatusResponse);
+}
+
+message FulfillmentRequest {
+    string order_id = 1;
+    string customer_id = 2;
+    double amount = 3;
+    string currency = 4;
+    string idempotency_key = 5;
+}
+
+message FulfillmentResponse {
+    string fulfillment_id = 1;
+    string status = 2; // PENDING, CONFIRMED, FAILED
+    string message = 3;
+    int64 timestamp = 4;
+}
+
+message OrderStatusRequest {
+    string order_id = 1;
+}
+
+message OrderStatusResponse {
+    string order_id = 1;
+    string status = 2;
+    string last_updated = 3;
+}
